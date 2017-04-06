@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * @file
+ * Daemon file.
+ */
+
+use React\EventLoop\Factory;
+
+// Including drupal kernel.
+require_once __DIR__ . '/includes/bootstrap.inc';
+
+if (($argc > 1) && ($daemon_name = $argv[1])) {
+  // Attach plugin system.
+  $plugin_service = \Drupal::service('plugin.manager.daemon');
+  $instance = $plugin_service->createInstance($daemon_name);
+
+  $loop = Factory::create();
+  if ($timer = $instance->getPeriodicTimer()) {
+    // Set php process id.
+    $instance->setProcessId(getmypid());
+    $loop->addPeriodicTimer($timer, function () use ($instance, $loop) {
+      $instance->execute($loop);
+    });
+  }
+  else {
+    $instance->execute($loop);
+  }
+  $loop->run();
+}
