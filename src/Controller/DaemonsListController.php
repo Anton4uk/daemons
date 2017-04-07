@@ -45,10 +45,11 @@ class DaemonsListController extends ControllerBase {
   }
 
   /**
-   * Build header.
+   * Prepare list of daemons.
    */
   protected function buildRows() {
     $rows = [];
+    // Get all existing daemon plugins.
     $plugin_service = \Drupal::service('plugin.manager.daemon');
     foreach ($plugin_service->getDefinitions() as $plugin_id => $plugin) {
       $instance = $plugin_service->createInstance($plugin_id);
