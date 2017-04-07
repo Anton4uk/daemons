@@ -1,0 +1,9 @@
+{
+    "name": "drupal/daemons",
+    "description": "Daemons.",
+    "type": "drupal-module",
+    "license": "GPL-2.0+",
+    "require": {
+        "react/react": "0.4.*"
+    }
+}
