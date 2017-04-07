@@ -11,6 +11,6 @@ daemons.list:
 daemon.run:
   path: '/admin/config/daemon/{task}/{daemon}'
   defaults:
-    _controller: '\Drupal\daemon\Controller\DaemonController::run'
+    _controller: '\Drupal\daemons\Controller\DaemonController::run'
   requirements:
     _permission: 'access administration pages'
