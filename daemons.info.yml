@@ -2,4 +2,4 @@ name: Daemons
 type: module
 description: Daemons module
 core: 8.x
-package: Other
+package: Daemons
